@@ -26,7 +26,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty read(int id) {
-        return facultyRepository.getOne(id);
+        return facultyRepository.getById(id);
     }
 
     @Override

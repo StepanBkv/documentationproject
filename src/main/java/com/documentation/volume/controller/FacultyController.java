@@ -35,8 +35,8 @@ public class FacultyController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/faculties/{id}")
-    public ResponseEntity<Faculty> read(@PathVariable(name = "id") int id){
+    @GetMapping(value = "/faculties/{id1}")
+    public ResponseEntity<Faculty> read(@PathVariable(name = "id1") int id){
         final Faculty faculty = facultyService.read(id);
 
         return faculty != null
