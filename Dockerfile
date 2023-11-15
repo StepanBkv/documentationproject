@@ -1,9 +1,15 @@
-#mvn package
-#docker build --build-arg JAR_FILE=target/*.jar -t back_doc .
-#docker run -p 8080:8080 back_doc
+#
+# Build stage
+#
+FROM maven:3.9.5-eclipse-temurin-17-alpine AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
 
+#
+# Package stage
+#
 FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=build /home/app/target/*.jar /usr/local/lib/backdoc.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/backdoc.jar"]

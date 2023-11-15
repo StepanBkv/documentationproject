@@ -1,0 +1,19 @@
+stages:
+  - deploy
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+
+deploy:
+  stage: deploy
+  image:
+    name: docker/compose:latest
+  services:
+    - docker:dind
+  tags:
+    - dev
+  script:
+    - docker-compose -f docker-compose-back.yml down --remove-orphans
+    - docker-compose -f docker-compose-back.yml build
+    - docker-compose -f docker-compose-back.yml up -d
