@@ -1,6 +1,7 @@
 version: '3'
 services:
   back:
+    container_name: doc-back-dc
     build:
       context: ./
       dockerfile: Dockerfile

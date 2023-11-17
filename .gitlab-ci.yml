@@ -14,6 +14,7 @@ deploy:
   tags:
     - dev
   script:
-    - docker-compose -f docker-compose-back.yml down --remove-orphans
-    - docker-compose -f docker-compose-back.yml build
-    - docker-compose -f docker-compose-back.yml up -d
+    - docker stop doc-backend || true
+    #- docker rm doc-backend || true
+    - docker build -t back-image .
+    - docker run --name doc-backend -d -p 8080:8080 back-image
