@@ -15,6 +15,6 @@ deploy:
     - dev
   script:
     - docker stop doc-backend || true
-    #- docker rm doc-backend || true
+    - docker rm doc-backend || true
     - docker build -t back-image .
     - docker run --name doc-backend -d -p 8080:8080 back-image
