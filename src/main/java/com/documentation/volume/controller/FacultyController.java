@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://192.168.0.27")
+@CrossOrigin(origins = "*")
 @RestController
 public class FacultyController {
 
