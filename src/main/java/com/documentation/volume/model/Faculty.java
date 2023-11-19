@@ -6,11 +6,15 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Data
 @Table(name = "faculty")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class Faculty {
     @Id
     @Column(name = "id")

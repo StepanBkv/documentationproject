@@ -1,18 +1,19 @@
 package com.documentation.volume.service;
 
+import com.documentation.volume.DTO.FacultyDto;
 import com.documentation.volume.model.Faculty;
 
 import java.util.List;
 
 public interface FacultyService {
 
-    void create(Faculty faculty);
+    void create(FacultyDto faculty);
 
-    List<Faculty> readAll();
+    List<FacultyDto> readAll();
 
-    Faculty read(int id);
+    FacultyDto read(int id);
 
-    boolean update(Faculty faculty, int id);
+    boolean update(FacultyDto faculty, int id);
 
     boolean delete(int id);
 }

@@ -1,5 +1,7 @@
 package com.documentation.volume.controller;
 
+import com.documentation.volume.DTO.DepartmentDto;
+import com.documentation.volume.DTO.FacultyDto;
 import com.documentation.volume.model.Department;
 import com.documentation.volume.model.Faculty;
 import com.documentation.volume.service.DepartmentService;
@@ -24,17 +26,17 @@ public class DepartmentController {
 
 
     @PostMapping(value = "/faculties/{id}/departments")
-    public ResponseEntity<?> create(@PathVariable(value = "id") int id, @RequestBody Department department){
+    public ResponseEntity<?> create(@PathVariable(value = "id") int id, @RequestBody DepartmentDto departmentDto){
 
-        Faculty faculty = facultyService.read(id);
-        department.setFaculty(faculty);
-        departmentService.create(department);
+        FacultyDto faculty = facultyService.read(id);
+        departmentDto.setFaculty(faculty);
+        departmentService.create(departmentDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/departments")
-    public ResponseEntity<List<Department>> read() {
-        final List<Department> departments = departmentService.readAll();
+    public ResponseEntity<List<DepartmentDto>> read() {
+        final List<DepartmentDto> departments = departmentService.readAll();
 
         return departments != null &&  !departments.isEmpty()
                 ? new ResponseEntity<>(departments, HttpStatus.OK)
@@ -42,8 +44,8 @@ public class DepartmentController {
     }
 
     @GetMapping(value = "/departments/{id}")
-    public ResponseEntity<Department> read(@PathVariable(name = "id") int id){
-        final Department department = departmentService.read(id);
+    public ResponseEntity<DepartmentDto> read(@PathVariable(name = "id") int id){
+        final DepartmentDto department = departmentService.read(id);
 
         return department != null
                 ? new ResponseEntity<>(department, HttpStatus.OK)
@@ -51,7 +53,7 @@ public class DepartmentController {
     }
 
     @PutMapping(value = "/departments/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Department departments) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody DepartmentDto departments) {
         final boolean updated = departmentService.update(departments, id);
 
         return updated

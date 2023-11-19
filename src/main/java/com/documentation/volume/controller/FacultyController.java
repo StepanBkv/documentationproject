@@ -1,5 +1,6 @@
 package com.documentation.volume.controller;
 
+import com.documentation.volume.DTO.FacultyDto;
 import com.documentation.volume.model.Faculty;
 import com.documentation.volume.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,14 @@ public class FacultyController {
     }
 
     @PostMapping(value = "/faculties")
-    public ResponseEntity<?> create(@RequestBody Faculty faculty){
+    public ResponseEntity<?> create(@RequestBody FacultyDto faculty){
         facultyService.create(faculty);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/faculties")
-    public ResponseEntity<List<Faculty>> read() {
-        final List<Faculty> faculties = facultyService.readAll();
+    public ResponseEntity<List<FacultyDto>> read() {
+        final List<FacultyDto> faculties = facultyService.readAll();
 
         return faculties != null &&  !faculties.isEmpty()
                 ? new ResponseEntity<>(faculties, HttpStatus.OK)
@@ -37,8 +38,8 @@ public class FacultyController {
     }
 
     @GetMapping(value = "/faculties/{id1}")
-    public ResponseEntity<Faculty> read(@PathVariable(name = "id1") int id){
-        final Faculty faculty = facultyService.read(id);
+    public ResponseEntity<FacultyDto> read(@PathVariable(name = "id1") int id){
+        final FacultyDto faculty = facultyService.read(id);
 
         return faculty != null
                 ? new ResponseEntity<>(faculty, HttpStatus.OK)
@@ -46,7 +47,7 @@ public class FacultyController {
     }
 
     @PutMapping(value = "/faculties/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Faculty faculty) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody FacultyDto faculty) {
         final boolean updated = facultyService.update(faculty, id);
 
         return updated
