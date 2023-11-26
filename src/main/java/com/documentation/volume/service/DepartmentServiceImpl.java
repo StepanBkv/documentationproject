@@ -21,10 +21,11 @@ public class DepartmentServiceImpl implements DepartmentService{
     private DepartmentMapper departmentMapper;
     @Transactional
     @Override
-    public void create(DepartmentDto departmentDto) {
+    public DepartmentDto create(DepartmentDto departmentDto) {
 
         Department department = departmentMapper.toModel(departmentDto);
-        departmentRepository.save(department);
+        department = departmentRepository.save(department);
+        return departmentMapper.toDto(department);
     }
     @Transactional
     @Override
@@ -45,15 +46,15 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
     @Transactional
     @Override
-    public boolean update(DepartmentDto departmentDto, int id) {
+    public DepartmentDto update(DepartmentDto departmentDto, int id) {
         if (departmentRepository.existsById(id)){
             Department department = departmentMapper.toModel(departmentDto);
             department.setId(id);
-            departmentRepository.save(department);
-            return true;
+            department = departmentRepository.save(department);
+            return departmentMapper.toDto(department);
         }
 
-        return false;
+        return null;
     }
     @Transactional
     @Override

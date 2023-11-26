@@ -30,8 +30,8 @@ public class DepartmentController {
 
         FacultyDto faculty = facultyService.read(id);
         departmentDto.setFaculty(faculty);
-        departmentService.create(departmentDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        DepartmentDto departmentDtoResponse = departmentService.create(departmentDto);
+        return new ResponseEntity<>(departmentDtoResponse,HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/departments")
@@ -54,10 +54,10 @@ public class DepartmentController {
 
     @PutMapping(value = "/departments/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody DepartmentDto departments) {
-        final boolean updated = departmentService.update(departments, id);
+        final DepartmentDto departmentDtoResponse = departmentService.update(departments, id);
 
-        return updated
-                ? new ResponseEntity<>(HttpStatus.OK)
+        return departmentDtoResponse != null
+                ? new ResponseEntity<>(departmentDtoResponse,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
     @DeleteMapping(value = "/departments/{id}")

@@ -24,8 +24,8 @@ public class FacultyController {
 
     @PostMapping(value = "/faculties")
     public ResponseEntity<?> create(@RequestBody FacultyDto faculty){
-        facultyService.create(faculty);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        FacultyDto facultyDtoResponse = facultyService.create(faculty);
+        return new ResponseEntity<>(facultyDtoResponse,HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/faculties")
@@ -48,10 +48,10 @@ public class FacultyController {
 
     @PutMapping(value = "/faculties/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody FacultyDto faculty) {
-        final boolean updated = facultyService.update(faculty, id);
+        final FacultyDto FacultyDtoResponse = facultyService.update(faculty, id);
 
-        return updated
-                ? new ResponseEntity<>(HttpStatus.OK)
+        return FacultyDtoResponse != null
+                ? new ResponseEntity<>(FacultyDtoResponse,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 

@@ -23,11 +23,11 @@ public class FacultyServiceImpl implements FacultyService {
     private FacultyMapper facultyMapper;
     @Transactional
     @Override
-    public void create(FacultyDto facultyDto) {
+    public FacultyDto create(FacultyDto facultyDto) {
 
         Faculty faculty = facultyMapper.toModel(facultyDto);
-
-        facultyRepository.save(faculty);
+        faculty = facultyRepository.save(faculty);
+        return facultyMapper.toDto(faculty);
     }
     @Transactional
     @Override
@@ -50,18 +50,18 @@ public class FacultyServiceImpl implements FacultyService {
     }
     @Transactional
     @Override
-    public boolean update(FacultyDto facultyDto, int id) {
+    public FacultyDto update(FacultyDto facultyDto, int id) {
 
 
         if (facultyRepository.existsById(id)){
             Faculty faculty = facultyRepository.findById(id).get();
             faculty.setName(facultyDto.getName());
             faculty.setShortName(facultyDto.getShortName());
-            facultyRepository.save(faculty);
-            return true;
+            faculty = facultyRepository.save(faculty);
+            return facultyMapper.toDto(faculty);
         }
 
-        return false;
+        return null;
     }
     @Transactional
     @Override
