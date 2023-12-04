@@ -19,6 +19,9 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "department_number")
+    private Integer number;
+
     @Column(name = "department_name")
     private String name;
 
