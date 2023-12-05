@@ -11,10 +11,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class VersionDto {
 
-    private Integer id;
+    private Long id;
     private Date lastModifiedDate;
     private String versionNumber;
     private String academicYear;
     private Boolean umu;
-    private Integer departmentId;
+    private Long departmentId;
 }

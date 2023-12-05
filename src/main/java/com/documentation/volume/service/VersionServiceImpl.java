@@ -34,14 +34,14 @@ public class VersionServiceImpl implements VersionService{
     }
 
     @Override
-    public List<VersionDto> findAllByDepartmentId(int id){
+    public List<VersionDto> findAllByDepartmentId(Long id){
         List<Version> versions = versionRepository.findAllByDepartmentId(id);
 
         return versions.stream().map(versionMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
-    public VersionDto read(int id) {
+    public VersionDto read(Long id) {
         Optional<Version> optionalVersion = versionRepository.findById(id);
 
         Version version = optionalVersion.isPresent() ? optionalVersion.get() : null;
@@ -49,7 +49,7 @@ public class VersionServiceImpl implements VersionService{
     }
 
     @Override
-    public VersionDto update(VersionDto versionDto, int id) {
+    public VersionDto update(VersionDto versionDto, Long id) {
         if(versionRepository.existsById(id)){
             Version version = versionMapper.toModel(versionDto);
             version.setId(id);
@@ -60,7 +60,7 @@ public class VersionServiceImpl implements VersionService{
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         if (versionRepository.existsById(id)){
             versionRepository.deleteById(id);
             return true;

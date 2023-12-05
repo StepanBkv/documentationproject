@@ -16,7 +16,7 @@ public class Version {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
@@ -31,5 +31,5 @@ public class Version {
     private Boolean umu;
 
     @Column(name = "department_id")
-    private Integer departmentId;
+    private Long departmentId;
 }

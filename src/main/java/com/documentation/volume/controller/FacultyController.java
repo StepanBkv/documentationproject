@@ -38,7 +38,7 @@ public class FacultyController {
     }
 
     @GetMapping(value = "/faculties/{id1}")
-    public ResponseEntity<FacultyDto> read(@PathVariable(name = "id1") int id){
+    public ResponseEntity<FacultyDto> read(@PathVariable(name = "id1") Long id){
         final FacultyDto faculty = facultyService.read(id);
 
         return faculty != null
@@ -47,7 +47,7 @@ public class FacultyController {
     }
 
     @PutMapping(value = "/faculties/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody FacultyDto faculty) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody FacultyDto faculty) {
         final FacultyDto FacultyDtoResponse = facultyService.update(faculty, id);
 
         return FacultyDtoResponse != null
@@ -56,7 +56,7 @@ public class FacultyController {
     }
 
     @DeleteMapping(value = "/faculties/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = facultyService.delete(id);
 
         return deleted

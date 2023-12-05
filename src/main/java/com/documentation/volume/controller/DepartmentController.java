@@ -26,7 +26,7 @@ public class DepartmentController {
 
 
     @PostMapping(value = "/faculties/{id}/departments")
-    public ResponseEntity<?> create(@PathVariable(value = "id") int id, @RequestBody DepartmentDto departmentDto){
+    public ResponseEntity<?> create(@PathVariable(value = "id") Long id, @RequestBody DepartmentDto departmentDto){
 
         FacultyDto faculty = facultyService.read(id);
         departmentDto.setFaculty(faculty);
@@ -44,7 +44,7 @@ public class DepartmentController {
     }
 
     @GetMapping(value = "/departments/{id}")
-    public ResponseEntity<DepartmentDto> read(@PathVariable(name = "id") int id){
+    public ResponseEntity<DepartmentDto> read(@PathVariable(name = "id") Long id){
         final DepartmentDto department = departmentService.read(id);
 
         return department != null
@@ -53,7 +53,7 @@ public class DepartmentController {
     }
 
     @PutMapping(value = "/departments/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody DepartmentDto departments) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody DepartmentDto departments) {
         final DepartmentDto departmentDtoResponse = departmentService.update(departments, id);
 
         return departmentDtoResponse != null
@@ -61,7 +61,7 @@ public class DepartmentController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
     @DeleteMapping(value = "/departments/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = departmentService.delete(id);
 
         return deleted

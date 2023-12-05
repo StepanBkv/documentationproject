@@ -10,9 +10,9 @@ public interface FacultyService {
 
     List<FacultyDto> readAll();
 
-    FacultyDto read(int id);
+    FacultyDto read(Long id);
 
-    FacultyDto update(FacultyDto faculty, int id);
+    FacultyDto update(FacultyDto faculty, Long id);
 
-    boolean delete(int id);
+    boolean delete(Long id);
 }

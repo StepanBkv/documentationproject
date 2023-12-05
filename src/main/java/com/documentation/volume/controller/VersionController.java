@@ -34,7 +34,7 @@ public class VersionController {
 
 
     @GetMapping(value = "/versions/findByDep/{depId}")
-    public ResponseEntity<List<VersionDto>> findAllByDepartmentId(@PathVariable(name = "depId") int id) {
+    public ResponseEntity<List<VersionDto>> findAllByDepartmentId(@PathVariable(name = "depId") Long id) {
         final List<VersionDto> versions = versionService.findAllByDepartmentId(id);
 
         return versions != null &&  !versions.isEmpty()
@@ -43,7 +43,7 @@ public class VersionController {
     }
 
     @GetMapping(value = "/versions/{id}")
-    public ResponseEntity<VersionDto> read(@PathVariable(name = "id") int id){
+    public ResponseEntity<VersionDto> read(@PathVariable(name = "id") Long id){
         final VersionDto versionDto = versionService.read(id);
 
         return versionDto != null
@@ -52,7 +52,7 @@ public class VersionController {
     }
 
     @PutMapping(value = "/versions/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody VersionDto versionDto) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody VersionDto versionDto) {
         final VersionDto versionDtoResponse = versionService.update(versionDto, id);
 
         return versionDtoResponse != null
@@ -60,7 +60,7 @@ public class VersionController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
     @DeleteMapping(value = "/versions/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = versionService.delete(id);
 
         return deleted

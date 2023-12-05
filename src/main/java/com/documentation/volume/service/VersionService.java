@@ -11,12 +11,12 @@ public interface VersionService {
 
     List<VersionDto> readAll();
 
-    List<VersionDto> findAllByDepartmentId(int id);
+    List<VersionDto> findAllByDepartmentId(Long id);
 
-    VersionDto read(int id);
+    VersionDto read(Long id);
 
-    VersionDto update(VersionDto version, int id);
+    VersionDto update(VersionDto version, Long id);
 
 
-    boolean delete(int id);
+    boolean delete(Long id);
 }

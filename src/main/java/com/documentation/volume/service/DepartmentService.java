@@ -9,9 +9,9 @@ public interface DepartmentService {
 
     List<DepartmentDto> readAll();
 
-    DepartmentDto read(int id);
+    DepartmentDto read(Long id);
 
-    DepartmentDto update(DepartmentDto department, int id);
+    DepartmentDto update(DepartmentDto department, Long id);
 
-    boolean delete(int id);
+    boolean delete(Long id);
 }

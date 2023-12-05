@@ -40,7 +40,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
     @Transactional
     @Override
-    public FacultyDto read(int id) {
+    public FacultyDto read(Long id) {
 
         Optional<Faculty> optionalFaculty = facultyRepository.findById(id);
         Faculty faculty = optionalFaculty.isPresent() ?
@@ -50,7 +50,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
     @Transactional
     @Override
-    public FacultyDto update(FacultyDto facultyDto, int id) {
+    public FacultyDto update(FacultyDto facultyDto, Long id) {
 
 
         if (facultyRepository.existsById(id)){
@@ -65,7 +65,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
     @Transactional
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         if (facultyRepository.existsById(id)){
             facultyRepository.deleteById(id);
             return true;

@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
     @Transactional
     @Override
-    public DepartmentDto read(int id) {
+    public DepartmentDto read(Long id) {
         Optional<Department> optionalDepartment = departmentRepository.findById(id);
 
         Department department = optionalDepartment.isPresent() ?
@@ -46,7 +46,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
     @Transactional
     @Override
-    public DepartmentDto update(DepartmentDto departmentDto, int id) {
+    public DepartmentDto update(DepartmentDto departmentDto, Long id) {
         if (departmentRepository.existsById(id)){
             Department department = departmentMapper.toModel(departmentDto);
             department.setId(id);
@@ -58,7 +58,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
     @Transactional
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         if (departmentRepository.existsById(id)){
             departmentRepository.deleteById(id);
             return true;
