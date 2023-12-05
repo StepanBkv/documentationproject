@@ -25,6 +25,10 @@ public class Department {
     @Column(name = "department_name")
     private String name;
 
+    @Column(name = "department_short_name")
+    private String shortName;
+
+
     @ManyToOne
     @JoinColumn(name="faculty_id")
     private Faculty faculty;
